@@ -22,8 +22,11 @@ void createList();
 void displayFromEnd();
 void displayFromStart();
 void insertBeginning();
+void insertBeforeValue();
+void insertAfterValue();
 void deleteFromStart();
 void deleteFromEnd();
+void deleteValue();
 
 
 //--Main Function---
@@ -38,11 +41,14 @@ int main(){
         printf("1. Create a list\n");
         printf("2. Insert at the beginning\n");
         printf("3. Insert at the end\n");
-        printf("4. Delete from beginning\n");
-        printf("5. Delete from end\n");
-        printf("6. Display from beginning\n");
-        printf("7. Display from end\n");
-        printf("8. End\n");
+        printf("4. Insert before particular value\n");
+        printf("5. Insert after particular value\n");
+        printf("6. Delete from beginning\n");
+        printf("7. Delete from end\n");
+        printf("8. Delete a particular value\n");
+        printf("9. Display from beginning\n");
+        printf("10. Display from end\n");
+        printf("11. End\n");
         printf("Select an operation:");
         scanf("%d", &choice);
 
@@ -55,6 +61,7 @@ int main(){
                     createList();
                     n--;
                 }
+                printf("\nList created Successfully.\n");
                 break;
 
             //Insert at beginning
@@ -75,11 +82,24 @@ int main(){
                 }
                 else{
                     createList();
+                    printf("\nInsertion Successful.\n");
                 }
                 break;
 
-            //Delete from start
+            //Insert before particular value
             case 4:
+                insertBeforeValue();
+                // displayFromStart();
+                break;
+
+            //Insert after particular value
+            case 5:
+                insertAfterValue();
+                // displayFromStart();
+                break;
+
+            //Delete from start
+            case 6:
                 if(start==NULL){
                     printf("\nERROR!! No List Found\n");
                 }
@@ -89,7 +109,7 @@ int main(){
                 break;
 
             //Delete from end
-            case 5:
+            case 7:
                  if(start==NULL){
                     printf("\nERROR!! No List Found\n");
                 }
@@ -98,8 +118,14 @@ int main(){
                 }
                 break;
 
+            //Delete a particular value
+            case 8:
+                deleteValue();
+                displayFromStart();
+                break;
+
             //Display from the start
-            case 6:
+            case 9:
                 if(start==NULL){
                     printf("\nERROR!! No List Found\n");
                 }
@@ -110,7 +136,7 @@ int main(){
                 break;
             
             //Display from the end
-            case 7:
+            case 10:
                 if(start==NULL){
                     printf("\nERROR!! No List Found\n");
                 }
@@ -120,7 +146,7 @@ int main(){
                 break;
 
             //Ending the loop
-            case 8:
+            case 11:
                 run=false;
                 break;
 
@@ -188,6 +214,95 @@ void insertBeginning(){
     new_node->next=start;
     /*Making the newly inserted node at beginning the new node*/
     start=new_node;
+
+    printf("\nInserted Successfully\n");
+}
+
+//Function to insert before a particular value
+void insertBeforeValue(){
+    int n;
+    struct node *new_node, *ptr, *prev;
+    if(start==NULL){
+        printf("ERROR!! No list found!!");
+    }
+    
+    else{
+        displayFromStart();
+        printf("Before which node would you like to insert?: ");
+        scanf("%d", &n);
+
+        if(start->value==n){
+            printf("\nFor inserting in front, use insert at beginning.\n");
+        }
+        else{
+            new_node=(struct node*)malloc(sizeof(struct node));
+            printf("Enter the value to insert: ");
+            scanf("%d", &num);
+
+            new_node->value=num;
+            
+            ptr=start;
+            while(true){
+                if(ptr->value==n){
+                    prev->next=new_node;
+                    new_node->next=ptr;
+                    ptr->prev=new_node;
+                    new_node->prev=prev;
+                    break;
+                }
+                else if(ptr->next==NULL){
+                    printf("List with %d value NOT FOUND!", n);
+                    break;
+                }
+                prev=ptr;
+                ptr=ptr->next;
+            }
+        }
+        
+    }
+}
+
+//Function to insert value after a node
+void insertAfterValue(){
+    int n;
+    struct node *new_node, *ptr, *next;
+
+    if(start==NULL){
+        printf("ERROR!! Create a list first.\n");
+    }
+    else{
+        displayFromStart();
+        printf("After which node would you like to insert?: ");
+        scanf("%d", &n);
+
+        if(previous->value==n){
+            printf("\nFor inserting in end, use insert at end.\n");
+        }
+        else{
+            new_node=(struct node*)malloc(sizeof(struct node));
+            printf("Enter the value to insert: ");
+            scanf("%d", &num);
+
+            new_node->value=num;
+            
+            ptr=start;
+            while(true){
+                next=ptr->next;
+                if(ptr->value==n){
+                    ptr->next=new_node;
+                    new_node->prev=ptr;
+                    new_node->next=next;
+                    next->prev=new_node;
+                    break;
+                }
+                else if(ptr->next==NULL){
+                    printf("List with %d value NOT FOUND!", n);
+                    break;
+                }
+                ptr=ptr->next;
+            }
+        }
+    }
 }
 
 
@@ -195,6 +310,7 @@ void insertBeginning(){
 void deleteFromStart(){
     struct node *ptr;
     ptr=start;  //Setting the ptr to be start
+    printf("\nDeleted value: %d\n", ptr->value);
 
     /*As the first node will be deleted, so updating the start to the next 
     node to it.*/
@@ -212,6 +328,7 @@ void deleteFromEnd(){
        /*As the last node will be deleted, and previous points to last node 
      so assign it to the ptr*/
     ptr=previous; 
+    printf("\nDeleted value: %d\n", ptr->value);
 
     /*updating the previous to the next node to it.*/
     previous=ptr->prev;
@@ -219,6 +336,48 @@ void deleteFromEnd(){
     previous->next=NULL;
     //Just free the pointer.
     free(ptr);
+    
+}
+
+//Function to delete a node with particular value
+void deleteValue(){
+    struct node *ptr, *prev_node, *next_node;
+    int n;
+
+    if(start==NULL){
+        printf("ERROR!! Create a list first.\n");
+    }
+    else{
+        displayFromStart();
+        printf("Node with which value to be deleted?: ");
+        scanf("%d", &n);
+
+        if(start->value==n){
+            printf("\nUse delete from beginning for deleting the first node.\n");
+        }
+        else if(previous->value==n){
+            printf("\nUse delete from end for deleting the last node.\n");
+        }
+        else{
+            ptr=start;
+            while(true){
+                next_node=ptr->next;
+                if(ptr->value==n){
+                    printf("\nNode Deleted with value %d\n", n);
+                    prev_node->next=next_node;
+                    next_node->prev=prev_node;
+                    break;
+                }
+                else if(ptr->next==NULL){
+                    printf("List with %d value NOT FOUND!", n);
+                    break;
+                }
+
+                prev_node=ptr;
+                ptr=ptr->next;
+            }
+        }
+    }
 }
 
 //Function to display the lsit from the start

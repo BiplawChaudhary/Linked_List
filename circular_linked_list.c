@@ -51,30 +51,30 @@ int main(){
                     createList();
                     n--;
                 }
-                display();
+                printf("\nList Created!!\n");
                 break;
 
             //Insert at beginning
             case 2:
                 insertAtBeginning();
-                display();
+                // display();
                 break;
 
             //Insert at end
             case 3:
                 insertAtEnd();
-                display();
+                // display();
                 break;
             //Delete from beginning
             case 4:
                 deleteBeginning();
-                display();
+                // display();
                 break;
 
             //Delete from edn
             case 5:
                 deleteEnd();
-                display();
+                // display();
                 break;
 
             //Function to display the list
@@ -154,16 +154,19 @@ void insertAtBeginning(){
 
         //Assign the new_node as the start.
         start=new_node;
+
+        printf("\nValue inserted.\n");
     }
 }
 
 //Function to insert at end
 void insertAtEnd(){
     if(start==NULL){
-        printf("ERROR!! Create a list first.");
+        printf("ERROR!! Create a list first.\n");
     }
     else{
         createList();
+        printf("\nValue inserted.\n");
     }
 }
 
@@ -175,6 +178,7 @@ void deleteBeginning(){
     }
     else{
         ptr=start;
+        printf("\nDeleted Value: %d\n", ptr->value);
         start=ptr->next;
         previous->next=start;
         free(ptr);
@@ -193,6 +197,7 @@ void deleteEnd(){
     ptr=start;
     while(true){
         if(ptr->next==start){
+            printf("\nDeleted Value: %d\n", ptr->value);
             before->next=start;
             free(ptr);
             break;

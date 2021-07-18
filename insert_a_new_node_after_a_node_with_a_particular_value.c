@@ -64,6 +64,7 @@ void insertValue(int node_value, int num){
         }
         ptr=ptr->next;
     }
+    printf("\nInserted Successfully.\n");
 
 }
 
@@ -73,7 +74,7 @@ void display(){
 
     ptr=start;
 
-    printf("The List is:\n");
+    printf("\nThe List is:\n");
     while(true){
         printf("   |  %d  |  --|-->", ptr->num);
         if(ptr->next==NULL){

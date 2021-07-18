@@ -37,6 +37,7 @@ int main(){
     }
     printf("\nCreated List:\n");
     displayList();
+
     while(run){
         printf("\nInsertion done at:\n");
         printf("1. Beginning of node\n");
@@ -114,6 +115,7 @@ void insert_begin(){
     new_node->next=start;
     start=new_node;
     
+    printf("Inserted Successfully.\n");
 }
 
 //Function to insert at end
@@ -121,6 +123,7 @@ void insert_end(){
     printf("Enter a number: ");
     scanf("%d", &num);
     createList();
+    printf("Inserted Successfully.\n");
 }
 
 

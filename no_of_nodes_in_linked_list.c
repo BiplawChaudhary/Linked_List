@@ -1,6 +1,7 @@
 //Write a program to count the number of nodes in a singly linked list.
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 //----Structure Declaration----
 struct node{
@@ -14,6 +15,21 @@ int num=10;
 
 
 //Function Declaration
+void createNode();
+int counter();
+
+
+//-----Main Function----
+int main(){
+  int i;
+  for(i=0;i<=6;i++){
+      createNode();
+  }
+
+  printf("\n\nNo. of nodes: %d", counter());
+}
+
+//Function to create list
 void createNode(){
     struct node *new_node ;
 
@@ -21,10 +37,10 @@ void createNode(){
     new_node=(struct node*)malloc(sizeof(struct node));
     new_node->num=num;  
     num+=5;
-
+    new_node->next=NULL;
     //If it is the first node to be inserted.
     if(start==NULL){
-        new_node->next=NULL;  //Set its next to be null.
+       
         start=new_node;         //And assing the first node as the start of the linked list.
     }     
 
@@ -34,7 +50,7 @@ void createNode(){
         between new node and the previous one.*/
         previous->next=new_node;  
         /*To specify the ending of new_node, assign new nodes next to NULL.*/
-        new_node->next=NULL;
+       
 
     }
     /*Set previous node value to the newly created node. 
@@ -50,21 +66,14 @@ int counter(){
     ptr=start;
 
     printf("Created List:\n");
-    while(ptr->next!=NULL){
-        printf("  | %d | --|-->\t", ptr->num);
+    while(true){
+        printf("  | %d | --|-->", ptr->num);
         count++;
+        if(ptr->next==NULL)
+            break;
+        
         ptr=ptr->next;
     }
 
     return count;
-}
-
-//-----Main Function----
-int main(){
-  int i;
-  for(i=0;i<=6;i++){
-      createNode();
-  }
-
-  printf("\n\nNo. of nodes: %d", counter());
 }

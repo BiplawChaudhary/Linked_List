@@ -57,27 +57,21 @@ void createNode(){
 //Function to search a particular number in list
 void searchList(int num){
     struct node *ptr;
-    bool found=false;
 
     ptr=start;
     while(true){
         if(ptr->num==num){
-            found=true;
+            printf("\nNumber is in the list.\n");
+            printf("Found at address:%x", ptr);
             break;
         }
         else if(ptr->next==NULL){
+            printf("\nNumber not found on linked list.");
             break;
         }
         ptr=ptr->next;
     }
 
-    if(found){
-        printf("\nNumber is in the list.\n");
-        printf("Found at address:%x", ptr);
-    }
-    else{
-        printf("\nNumber not found on linked list.");
-    }
 }
 
 

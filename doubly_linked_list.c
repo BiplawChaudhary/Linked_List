@@ -48,7 +48,7 @@ int main(){
         printf("8. Delete a particular value\n");
         printf("9. Display from beginning\n");
         printf("10. Display from end\n");
-        printf("11. End\n");
+        printf("11. Exit\n");
         printf("Select an operation:");
         scanf("%d", &choice);
 

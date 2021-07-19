@@ -67,6 +67,21 @@ int main(){
 
 }
 
+//Function to pop from the stack
+void popStack(){
+    struct node *ptr;
+
+    if(top==NULL){
+        printf("ERROR!! Stack Underflow.\n");
+    }
+    else{
+        ptr=top;
+        printf("\nPopped Value:%d\n", ptr->value);
+        top=ptr->next;
+        free(ptr);
+    }
+}
+
 //Function to push into stack
 void pushStack(){
     struct node *new_node;
@@ -92,20 +107,7 @@ void pushStack(){
     printf("Pushed Successfully.\n");
 }
 
-//Function to pop from the stack
-void popStack(){
-    struct node *ptr;
 
-    if(top==NULL){
-        printf("ERROR!! Stack Underflow.\n");
-    }
-    else{
-        ptr=top;
-        printf("\nPopped Value:%d\n", ptr->value);
-        top=ptr->next;
-        free(ptr);
-    }
-}
 
 //Function to peek the stack
 void peekStack(){

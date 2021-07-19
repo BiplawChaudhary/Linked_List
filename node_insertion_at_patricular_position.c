@@ -15,6 +15,31 @@ struct node *start, *previous;
 int num=7;
 
 //Function Declaration
+void createList();
+void display();
+void insertValue(int, int);
+
+//----Main Function---
+int main(){
+    int node_value,num, i;
+
+    for(i=0;i<3;i++){
+        createList();
+    }
+
+    display();
+
+    printf("\nBefore which value would you like to insert the new node:");
+    scanf("%d", &node_value);
+    printf("Enter a number to be inserted:");
+    scanf("%d", &num);
+
+    insertValue(node_value, num);
+    display();  
+    
+}
+
+//Function to create a list
 void createList(){
     struct node *new_node;
 
@@ -53,7 +78,7 @@ void display(){
 
 //Function to insert the value
 void insertValue(int node_value, int num){
-    struct node *ptr, *new_node, *prev;
+    struct node *ptr, *new_node;
     ptr=start;
 
     new_node=(struct node*)malloc(sizeof(struct node));
@@ -84,25 +109,4 @@ void insertValue(int node_value, int num){
             ptr=ptr->next;
         }
     }
-}
-
-//----Main Function---
-int main(){
-    int node_value,num, i;
-
-    for(i=0;i<4;i++){
-        createList();
-    }
-
-    display();
-
-    printf("\nBefore which value would you like to insert the new node:");
-    scanf("%d", &node_value);
-    printf("Enter a number to be inserted:");
-    scanf("%d", &num);
-
-    insertValue(node_value, num);
-    display();
-    
-    
 }

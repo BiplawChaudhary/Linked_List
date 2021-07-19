@@ -14,6 +14,31 @@ struct node{
 struct node *start, *previous;
 int num=3;
 
+//Function Declaration
+void createList();
+void delFirstNode();
+void  delEndNode();
+void display();
+
+//Main Function
+int main(){
+    int i;
+
+    for(i=0;i<5;i++){
+        createList();
+    }
+    printf("Linked List Created:\n");
+    display();
+
+    printf("\n\nResult After Deletion of first node:\n");
+    delFirstNode();
+    display();
+
+    printf("\n\nResult After Deletion of end node from above linked list:\n");
+    delEndNode();
+    display();
+}
+
 
 //Creating a Linked List
 void createList(){
@@ -49,16 +74,16 @@ void delFirstNode(){
 
 //Function to delete the end node
 void  delEndNode(){
-    struct node *ptr, *previous;
+    struct node *ptr, *prev;
     ptr=start;
 
     while(true){
         if(ptr->next==NULL){
-            previous->next=NULL;
+            prev->next=NULL;
             free(ptr);
             break;
         }
-        previous=ptr;
+        prev=ptr;
         ptr=ptr->next;
     }
 }
@@ -77,21 +102,3 @@ void display(){
     }
 }
 
-//Main Function
-int main(){
-    int i;
-
-    for(i=0;i<5;i++){
-        createList();
-    }
-    printf("Linked List Created:\n");
-    display();
-
-    printf("\n\nResult After Deletion of first node:\n");
-    delFirstNode();
-    display();
-
-    printf("\n\nResult After Deletion of end node from above linked list:\n");
-    delEndNode();
-    display();
-}

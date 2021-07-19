@@ -194,17 +194,19 @@ void deleteEnd(){
         exit(1);
     }
 
-    ptr=start;
-    while(true){
-        if(ptr->next==start){
-            printf("\nDeleted Value: %d\n", ptr->value);
-            before->next=start;
-            free(ptr);
-            break;
+    else{
+        ptr=start;
+        while(true){
+            if(ptr->next==start){
+                printf("\nDeleted Value: %d\n", ptr->value);
+                before->next=start;
+                free(ptr);
+                break;
+            }
+            before=ptr;
+            ptr=ptr->next;
+            
         }
-        before=ptr;
-        ptr=ptr->next;
-        
     }
 }
 //Function to display the result

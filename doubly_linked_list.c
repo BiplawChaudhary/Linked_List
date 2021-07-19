@@ -55,7 +55,7 @@ int main(){
         switch(choice){
             //create the list
             case 1:
-                printf("How many nodes would you like to create:");
+                printf("How many nodes to create?: ");
                 scanf("%d", &n);
                 while(n>0){
                     createList();
@@ -160,7 +160,7 @@ int main(){
 
 //Function to read the numebrs
 void readData(){
-    printf("Enter a number to insert:");
+    printf("Enter a number:");
     scanf("%d", &num);
 }
 
@@ -236,8 +236,7 @@ void insertBeforeValue(){
         }
         else{
             new_node=(struct node*)malloc(sizeof(struct node));
-            printf("Enter the value to insert: ");
-            scanf("%d", &num);
+            readData();
 
             new_node->value=num;
             
@@ -257,6 +256,7 @@ void insertBeforeValue(){
                 prev=ptr;
                 ptr=ptr->next;
             }
+            printf("\nInserted Successfully.\n");
         }
         
     }
@@ -280,8 +280,7 @@ void insertAfterValue(){
         }
         else{
             new_node=(struct node*)malloc(sizeof(struct node));
-            printf("Enter the value to insert: ");
-            scanf("%d", &num);
+           readData();
 
             new_node->value=num;
             
@@ -301,6 +300,7 @@ void insertAfterValue(){
                 }
                 ptr=ptr->next;
             }
+            printf("\nInserted Successfully.\n");
         }
     }
 }

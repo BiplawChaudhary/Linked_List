@@ -14,6 +14,33 @@
  struct node *start, *previous;
  int num=10;
 
+
+//Function Declaration
+void createList();
+void insertValue(int, int);
+void display();
+
+ //---Main Function--
+int main(){
+     int node_value,num, i;
+
+    for(i=0;i<3;i++){
+        createList();
+    }
+
+    display();
+
+    printf("\nAfter which value would you like to insert the new node:");
+    scanf("%d", &node_value);
+    printf("Enter a number to be inserted:");
+    scanf("%d", &num);
+
+    insertValue(node_value, num);
+    display();
+
+}
+
+
  //Function to create a linked list
  void createList(){
     struct node *new_node;
@@ -84,23 +111,3 @@ void display(){
     }
 }
 
-
- //---Main Function--
-int main(){
-     int node_value,num, i;
-
-    for(i=0;i<4;i++){
-        createList();
-    }
-
-    display();
-
-    printf("\nAfter which value would you like to insert the new node:");
-    scanf("%d", &node_value);
-    printf("Enter a number to be inserted:");
-    scanf("%d", &num);
-
-    insertValue(node_value, num);
-    display();
-
-}

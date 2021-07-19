@@ -120,8 +120,7 @@ void insert_begin(){
 
 //Function to insert at end
 void insert_end(){
-    printf("Enter a number: ");
-    scanf("%d", &num);
+    readData();
     createList();
     printf("Inserted Successfully.\n");
 }
@@ -130,10 +129,7 @@ void insert_end(){
 //Function to display the list
 void displayList(){
     struct node *ptr;
-    if(start==NULL){
-        printf("ERROR!! List not found!\n");
-        exit(1);
-    }
+  
     ptr=start;
     while(true){
         printf(" | %d | --|-->", ptr->value);
@@ -143,6 +139,7 @@ void displayList(){
         ptr=ptr->next;
     }
     printf("\n");
+    
     
 }
 

@@ -74,7 +74,6 @@ void searchList(int num){
 
 }
 
-
 //Display_Test
 void display(){
     struct node *ptr;

@@ -26,3 +26,4 @@ Linked list implementation using C
 
 ### Note
 There are both .exe and .c file here. 
+There are lots of palaces where improvement can be made. 
